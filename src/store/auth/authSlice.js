@@ -27,11 +27,12 @@ export const authSlice = createSlice({
             state.errorMessage = undefined;
         },
         onDeleteUser: (state) => {
-            state.status = 'logout';     
-            state.user = {};
-            state.errorMessage = undefined;
+            state.status = 'deleting';     
+        },
+        onReconnect: (state) => {
+            state.status = 'authenticated';
         },
     }
 });
 
-export const { onChecking, onLogin, onLogout, clearErrorMessage, onDeleteUser } = authSlice.actions;
+export const { onChecking, onLogin, onLogout, clearErrorMessage, onDeleteUser, onReconnect } = authSlice.actions;

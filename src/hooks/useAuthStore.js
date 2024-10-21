@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { onChecking, onLogin, onLogout, onDeleteUser } from "../store/auth/authSlice";
+import { onChecking, onLogin, onLogout, onDeleteUser, onReconnect } from "../store/auth/authSlice";
 import temapiApi from "../api/temapiApi";
 import toast from "react-hot-toast";
 import { useChatStore } from "./useChatStore";
@@ -96,24 +96,45 @@ export const useAuthStore = () => {
         }
     }
 
-    const startDeleteUser = () => {
-    
-            // try {
-
-            //     dispatch(onDeleteUser());
-            //     const {data} = await temapiApi.delete(`/api/login/delete/${uid}`);
-            //     //message
-            //     localStorage.clear();
-            //     dispatch(onLogout());
-            // } catch (error) {
-            //     dispatch( onChecking());
-            //     dispatch(onLogout(error.response.data?.msg || '--'));
-            //     setTimeout(() => {
-            //         dispatch(onLogout());
-            //     }, 10);
-            // }
-            localStorage.clear();
+    const startDeleteUser = async() => {
             dispatch(onDeleteUser());
+
+            const deletePromise = temapiApi.delete(`/api/login/delete/${user.uid}`);
+    
+            toast.promise(
+                deletePromise,
+                {
+                    loading: 'Deleting user...',
+                    success: (data) => 'Successfully deleted user',
+                    error: (error) => {
+                        const errorMessage = error.response?.data?.msg || error.message;
+                        return `Deletion failed: ${errorMessage}`;
+                    },
+                },
+                {
+                    success: {
+                        duration: 5000,
+                    },
+                    error: {
+                        duration: 5000,
+                    },
+                }
+            );
+
+            try {
+
+                //const {data} = await temapiApi.delete(`/api/login/delete/${uid}`);
+                
+                const { data } = await deletePromise;
+
+                //message
+                localStorage.clear();
+                dispatch(onLogout());
+                logoutClearChat();
+            } catch (error) {
+                console.log(error);
+                dispatch(onReconnect());
+            }
     }
 
     const checkAuthToken = async () => {
