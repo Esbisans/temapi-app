@@ -27,7 +27,9 @@ export const DropdownProfile = ({buttonRef}) => {
     const handleClickDeleteAccount = async () => {
         setIsProfileMenuOpen(false);
         await startDeleteUser();
-        socket?.emit('users:changes');
+        setTimeout (() => {
+            socket?.emit('users:changes');
+        }, 1000);
     }
 
     useEffect(() => {
