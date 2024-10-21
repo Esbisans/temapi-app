@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { onChecking, onLogin, onLogout, onDeleteUser, onReconnect } from "../store/auth/authSlice";
+import { onChecking, onLogin, onLogout } from "../store/auth/authSlice";
 import temapiApi from "../api/temapiApi";
 import toast from "react-hot-toast";
 import { useChatStore } from "./useChatStore";
@@ -97,7 +97,6 @@ export const useAuthStore = () => {
     }
 
     const startDeleteUser = async() => {
-            dispatch(onDeleteUser());
 
             const deletePromise = temapiApi.delete(`/api/login/delete/${user.uid}`);
     
@@ -124,16 +123,13 @@ export const useAuthStore = () => {
             try {
 
                 //const {data} = await temapiApi.delete(`/api/login/delete/${uid}`);
-                
                 const { data } = await deletePromise;
 
-                //message
                 localStorage.clear();
-                dispatch(onLogout());
+                dispatch(onLogout(data.msg));
                 logoutClearChat();
             } catch (error) {
                 console.log(error);
-                dispatch(onReconnect());
             }
     }
 

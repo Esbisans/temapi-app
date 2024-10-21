@@ -23,7 +23,7 @@ export const SocketProvider = ({ children }) => {
     }, [status, connectSocket])
 
     useEffect(() => {
-        if (status === 'logout' || status === 'deleting') {
+        if (status === 'logout' ) {
             disconnectSocket();
         }
     }, [status, disconnectSocket])

@@ -1,18 +1,7 @@
 import React from 'react'
+import { dateConvert } from '../helpers/dateConvert'
 
 export const SenderMessage = ({message}) => {
-
-  const dateConvert = (createdAt) => {
-    const date = new Date(createdAt);
-
-    const localTime = date.toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true, 
-    });
-
-    return localTime;
-  }
 
   return (
     <div className='select-none'>

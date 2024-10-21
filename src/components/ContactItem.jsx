@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { useChatStore } from '../hooks/useChatStore';
 import { SocketContext } from '../store/SocketContext';
+import { dateConvert } from '../helpers/dateConvert';
 
 export const ContactItem = ({user, lastMessage, unseenMessagesCount}) => {
 
@@ -31,18 +32,6 @@ export const ContactItem = ({user, lastMessage, unseenMessagesCount}) => {
         }
 
     }, [lastMessage])
-
-    const dateConvert = (createdAt) => {
-        const date = new Date(createdAt);
-    
-        const localTime = date.toLocaleTimeString('en-US', {
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: true, 
-        });
-    
-        return localTime;
-      }
 
   return (
     <div className='select-none' onClick={onClickActivateChat}>
