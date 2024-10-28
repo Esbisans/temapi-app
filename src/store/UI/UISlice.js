@@ -14,8 +14,12 @@ export const UISlice = createSlice({
         },
         setActiveSection: (state, action) => {
             state.activeSection = action.payload;
+        },
+        uiLogout: state => {
+            state.isProfileMenuOpen = false;
+            state.activeSection = 'chat';
         }
     }
 });
 
-export const { toggleProfileMenu, setActiveSection } = UISlice.actions;
+export const { toggleProfileMenu, setActiveSection, uiLogout } = UISlice.actions;

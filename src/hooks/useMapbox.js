@@ -13,7 +13,7 @@ export const useMapbox = (initialCoords) => {
     const imageUrl = "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80";
 
     const {user} = useAuthStore();
-    const {userMarker, setUserMarker, setMarkerExists} = useMapStore();
+    const {userMarker, setUserMarker, setMarkerExists, setMarkerActive} = useMapStore();
 
     const mapRef = useRef();
     const setRef = useCallback((node) => {
@@ -31,7 +31,7 @@ export const useMapbox = (initialCoords) => {
         const el = document.createElement('div');
 
         el.innerHTML = `
-        <svg class="e-marker" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 130.7" width="36">
+        <svg class="e-marker" fill= "#060F60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 130.7" width="36">
             <defs>
                 <clipPath id="circle">
                     <path d="M36,97.4c15,0,27.3-12.2,27.3-27.3c0-15-12.2-27.3-27.3-27.3S8.7,55.1,8.7,70.2S21,97.4,36,97.4z"/>
@@ -76,8 +76,6 @@ export const useMapbox = (initialCoords) => {
 
             marker.on('drag', () => {
                 const { lng, lat } = marker.getLngLat();
-                console.log({ lng, lat });
-
                 setUserMarker({ lng, lat, id: user.uid, userName: user.name });
             });
 
@@ -120,7 +118,11 @@ export const useMapbox = (initialCoords) => {
         marker.id = id;
 
         // Show the popup when the mouse enters the marker
-        markerElement.addEventListener('mouseenter', () => marker.togglePopup());
+        markerElement.addEventListener('mouseenter', () => {
+            marker.togglePopup()
+            markerElement.style.cursor = 'default';
+        }
+    );
     
         // Hide the popup when the mouse leaves the marker
         markerElement.addEventListener('mouseleave', () => marker.togglePopup());
@@ -134,14 +136,32 @@ export const useMapbox = (initialCoords) => {
         activeMarkersRef.current[id].setLngLat([lng, lat]);
     } , []);
 
+    const deleteActiveMarker = useCallback((id) => {
+        const marker = activeMarkersRef.current[id];
+        if (marker) {
+            marker.remove(); 
+            delete activeMarkersRef.current[id]; 
+        }
+    }, []);
+
     const flyToUserMarker = useCallback(() => {
-        if (userMarker) {
+        if (Object.keys(userMarker).length > 0) {
             map.current.flyTo({
                 center: activeMarkersRef.current[user.uid].getLngLat(),
                 essential: true
             });
         }
-    } , []);
+    } , [userMarker]);
+
+    const flyToActiveMarker = useCallback((id) => {
+        if (activeMarkersRef.current[id]) {
+            map.current.flyTo({
+                center: activeMarkersRef.current[id].getLngLat(),
+                essential: true
+            });
+            setMarkerActive(null);
+        }
+    }, []);
 
     useEffect(() => {
         map.current = new mapboxgl.Map({
@@ -178,6 +198,8 @@ export const useMapbox = (initialCoords) => {
         addUserMarker,
         addActiveMarker,
         updateMarkerLocation,
-        flyToUserMarker
+        deleteActiveMarker,
+        flyToUserMarker,
+        flyToActiveMarker
     };
 }

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setActiveSection, toggleProfileMenu } from "../store/UI/UISlice";
+import { setActiveSection, toggleProfileMenu, uiLogout } from "../store/UI/UISlice";
 
 
 export const useUIStore = () => {
@@ -14,5 +14,9 @@ export const useUIStore = () => {
         dispatch(setActiveSection(section));
     }
 
-    return { isProfileMenuOpen, activeSection, setIsProfileMenuOpen, activateSection };
+    const logoutClearUI = () => {
+        dispatch(uiLogout());
+    }
+
+    return { isProfileMenuOpen, activeSection, setIsProfileMenuOpen, activateSection, logoutClearUI };
 }

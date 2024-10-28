@@ -3,7 +3,7 @@ import { useChatStore } from '../hooks/useChatStore';
 import { SocketContext } from '../store/SocketContext';
 import { dateConvert } from '../helpers/dateConvert';
 
-export const ContactItem = ({user, lastMessage, unseenMessagesCount}) => {
+export const ContactChatItem = ({user, lastMessage, unseenMessagesCount}) => {
 
     const imageUrl = "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80";
 

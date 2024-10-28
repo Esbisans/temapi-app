@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     userMarker: {},
     activeMarkers: [],
+    markerActive: null,
     markerExists: false,
 };
 
@@ -19,8 +20,16 @@ export const mapSlice = createSlice({
         onSetMarkerExists: (state, action) => {
             state.markerExists = action.payload;
         },
+        onSetMarkerActive: (state, action) => {
+            state.markerActive = action.payload;
+        },
+        onAddMarkerActive: (state, action) => {
+            const marker = action.payload;
+            state.activeMarkers[marker.id] = marker;
+        },
+        mapLogout: () => initialState,
     },
     
 });
 
-export const { onSetUserMarker, onSetActiveMarkers, onSetMarkerExists } = mapSlice.actions;
+export const { onSetUserMarker, onSetActiveMarkers, onSetMarkerExists, onSetMarkerActive, onAddMarkerActive, mapLogout } = mapSlice.actions;

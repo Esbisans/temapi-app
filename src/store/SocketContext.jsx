@@ -4,6 +4,7 @@ import { useSocket } from '../hooks/useSocket';
 import { useAuthStore } from '../hooks/useAuthStore';
 import { useChatStore } from '../hooks/useChatStore';
 import { getEnv } from '../helpers/getEnv';
+import { useMapStore } from '../hooks/useMapStore';
 
 export const SocketContext = createContext();
 
@@ -14,6 +15,7 @@ export const SocketProvider = ({ children }) => {
     const { socket, online, connectSocket, disconnectSocket } = useSocket(VITE_API_URL);
     const { loadUsers , newMessage, loadLastMessages, loadUnseenMessages } = useChatStore();
 
+    const { setUserMarker } = useMapStore();
     const {status} = useAuthStore();
 
     useEffect(() => { 
@@ -55,6 +57,12 @@ export const SocketProvider = ({ children }) => {
             console.log(unseenMessages);
             loadUnseenMessages(unseenMessages)
         })
+    }, [socket])
+
+    useEffect(() => {
+        socket?.on('user:marker', (marker) => {
+            setUserMarker(marker);
+        });
     }, [socket])
     
     return (

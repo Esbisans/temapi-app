@@ -3,6 +3,8 @@ import { onChecking, onLogin, onLogout } from "../store/auth/authSlice";
 import temapiApi from "../api/temapiApi";
 import toast from "react-hot-toast";
 import { useChatStore } from "./useChatStore";
+import { useMapStore } from "./useMapStore";
+import { useUIStore } from "./useUIStore";
 
 
 export const useAuthStore = () => {
@@ -10,6 +12,8 @@ export const useAuthStore = () => {
     const {status, user, errorMessage} = useSelector(state => state.auth);
     
     const {logoutClearChat} = useChatStore();
+    const {logoutClearMap} = useMapStore();
+    const {logoutClearUI} = useUIStore();
 
     const dispatch = useDispatch();
 
@@ -128,6 +132,8 @@ export const useAuthStore = () => {
                 localStorage.clear();
                 dispatch(onLogout(data.msg));
                 logoutClearChat();
+                logoutClearMap();
+                logoutClearUI();
             } catch (error) {
                 console.log(error);
             }
@@ -158,6 +164,8 @@ export const useAuthStore = () => {
         localStorage.clear();
         dispatch(onLogout());
         logoutClearChat();
+        logoutClearMap();
+        logoutClearUI();
     }
 
     return {

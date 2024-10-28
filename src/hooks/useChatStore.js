@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { addMessage, messagesLoaded, setActiveChat, usersLoaded, lastMessagesLoaded, unseenMessagesLoaded, chatLogout } from "../store/chat/chatSlice";
 import temapiApi from "../api/temapiApi";
-import toast from "react-hot-toast";
 
 
 export const useChatStore = () => {

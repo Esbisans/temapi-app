@@ -25,9 +25,8 @@ export const DropdownProfile = ({buttonRef}) => {
     };
 
     const handleClickDeleteAccount = async () => {
-        setIsProfileMenuOpen(false);
+        socket?.emit('delete:marker', user.uid);
         await startDeleteUser();
-        socket?.emit('users:changes');
     }
 
     useEffect(() => {
