@@ -5,8 +5,6 @@ import { dateConvert } from '../helpers/dateConvert';
 
 export const ContactChatItem = ({user, lastMessage, unseenMessagesCount}) => {
 
-    const imageUrl = "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80";
-
     const { chatActive, activateChat } = useChatStore();
     const { loadMessages } = useChatStore();
 
@@ -23,6 +21,10 @@ export const ContactChatItem = ({user, lastMessage, unseenMessagesCount}) => {
 
     }
 
+    const avatarUrl = user.avatar 
+    ? `/assets/avatars/avatar-${user.avatar}.jpg`
+    : '/assets/avatars/avatar-0.jpg';
+
     useEffect(() => {
 
         // if the chatActive is the same as the last message sender
@@ -38,7 +40,7 @@ export const ContactChatItem = ({user, lastMessage, unseenMessagesCount}) => {
         <button className={`w-full h-[5.75rem] px-5 py-6 mb-3 flex rounded-xl focus:bg-indigo-50 hover:bg-indigo-50 ${user.uid === chatActive && 'bg-indigo-50'} active:bg-indigo-100 focus:outline-none transition duration-500 ease-out`}>
             {/* avatar */}
             <div className='relative mr-4'>
-                <div className='w-7 h-7 rounded-full bg-cover bg-center' style={{ backgroundImage: `url(${imageUrl})` }}> 
+                <div className='w-9 h-9 rounded-full bg-cover bg-center' style={{ backgroundImage: `url(${avatarUrl})` }}> 
                 </div>
                 {
                     (user.online) 
@@ -67,7 +69,7 @@ export const ContactChatItem = ({user, lastMessage, unseenMessagesCount}) => {
 
                     <div className='flex justify-between'>
                         {/* last message */}
-                        <p className={`overflow-hidden outline-none ${unseenMessagesCount ? 'text-indigo-700 font-medium' : 'text-black' } text-sm opacity-60 dark:text-white dark:opacity-70 font-normal leading-4 tracking-[.01rem] flex justify-start items-center flex-grow w-0`}>
+                        <p className={`overflow-hidden outline-none ${unseenMessagesCount ? 'text-indigo-700 font-semibold' : 'text-black' } text-sm opacity-60 dark:text-white dark:opacity-70 font-normal leading-4 tracking-[.01rem] flex justify-start items-center flex-grow w-0`}>
                             <span className='truncate'>
                                 {lastMessage?.message}
                             </span>

@@ -2,15 +2,14 @@ import React, { useContext, useEffect } from 'react'
 import { useAuthStore } from '../../hooks/useAuthStore';
 import { useForm } from '../../hooks/useForm';
 import { Link } from 'react-router-dom';
-import { SocketContext } from '../../store/SocketContext';
+import toast from 'react-hot-toast';
+import icon from '../../assets/icon.png';
 
 export const LoginPage = () => {
 
     const { startLogin, errorMessage } = useAuthStore();
 
-    const { socket } = useContext(SocketContext);
-
-    const {email, password, onInputChange} = useForm(
+    const {email, password, onInputChange, validateFields, errors} = useForm(
         {
             email: '', password: ''
         }
@@ -18,14 +17,13 @@ export const LoginPage = () => {
 
     const onFormSubmit = (e) => {
         e.preventDefault();
-        startLogin({email, password});
+        if (validateFields()) {
+            startLogin({ email, password });
+        } else {
+            toast.error('Please fill in all fields');
+        }
     }
 
-    // useEffect(() => {
-    //     if (errorMessage !== undefined) {
-    //         alert(`Auth Error: ${errorMessage}`);
-    //     }
-    // }, [errorMessage]);
 
   return (
     <div className='min-h-screen flex justify-center items-center'>
@@ -33,7 +31,7 @@ export const LoginPage = () => {
             <div className='w-full md:px-[15%] xs:px-[45%]'>
                 <div className='mb-10 flex flex-col'>
                     <p className='outline-none text-3xl text-black opacity-60 dark:text-white dark:opacity-70 font-semibold leading-4 tracking-[.01rem] mb-4'>
-                        Login
+                        Login 
                     </p>
                     <p className='mt-4 outline-none text-md text-black opacity-60 dark:text-white dark:opacity-70 leading-5 tracking-[.01rem] text-opacity-75 font-light'>
                         Sign in to start using messaging! 
@@ -58,14 +56,19 @@ export const LoginPage = () => {
                                     name='email'
                                     value={email}
                                     onChange={onInputChange}
-                                    className='max-w-full w-full h-12 p-4 rounded-xl content-center placeholder:text-black placeholder:opacity-40 text-opacity-70 dark:placeholder:text-white dark:placeholder:opacity-70 focus:outline-none transition duration-200 ease-out text-black bg-gray-50 dark:text-white border-opacity-0 dark:bg-gray-700 dark:bg-opacity-70 dark:border-opacity-70 dark:border-gray-700 focus:ring focus:ring-indigo-100 dark:focus:bg-opacity-0 focus:bg-opacity-0 mb-5' 
+                                    className='max-w-full w-full h-12 p-4 rounded-xl content-center placeholder:text-black placeholder:opacity-40 text-opacity-70 dark:placeholder:text-white dark:placeholder:opacity-70 focus:outline-none transition duration-200 ease-out text-black bg-gray-50 dark:text-white border-opacity-0 dark:bg-gray-700 dark:bg-opacity-70 dark:border-opacity-70 dark:border-gray-700 focus:ring focus:ring-indigo-100 dark:focus:bg-opacity-0 focus:bg-opacity-0 ' 
                                     />
                             </div>
+                            {errors.email && (
+                                <p className='text-red-400 text-sm mt-1 ml-2 transition-opacity duration-300 ease-in-out'>
+                                    {errors.email}
+                                </p>
+                            )}
                         </div>
                         {/* password */}
                         <div>
                             <div className='flex justify-start'>
-                                <label className='mb-3'>
+                                <label className='mt-4 mb-3'>
                                     <span className='w-13 text-sm text-black opacity-60 dark:text-white dark:opacity-70 font-semibold leading-4 tracking-[.01rem]'>
                                         Password
                                     </span>
@@ -79,13 +82,18 @@ export const LoginPage = () => {
                                     name='password'
                                     value={password}
                                     onChange={onInputChange}
-                                    className='max-w-full w-full h-12 p-4 rounded-xl content-center placeholder:text-black placeholder:opacity-40 text-opacity-70 dark:placeholder:text-white dark:placeholder:opacity-70 focus:outline-none transition duration-200 ease-out text-black bg-gray-50 dark:text-white border-opacity-0 dark:bg-gray-700 dark:bg-opacity-70 dark:border-opacity-70 dark:border-gray-700 focus:ring focus:ring-indigo-100 dark:focus:bg-opacity-0 focus:bg-opacity-0 mb-5' 
+                                    className='max-w-full w-full h-12 p-4 rounded-xl content-center placeholder:text-black placeholder:opacity-40 text-opacity-70 dark:placeholder:text-white dark:placeholder:opacity-70 focus:outline-none transition duration-200 ease-out text-black bg-gray-50 dark:text-white border-opacity-0 dark:bg-gray-700 dark:bg-opacity-70 dark:border-opacity-70 dark:border-gray-700 focus:ring focus:ring-indigo-100 dark:focus:bg-opacity-0 focus:bg-opacity-0' 
                                 />
+                                {errors.password && (
+                                    <p className='text-red-400 text-sm mt-1 ml-2 transition-opacity duration-300 ease-in-out'>
+                                        {errors.password}
+                                    </p>
+                                )}
                             </div>
                         </div>
                     </div>
 
-                    <div className='mb-6'>
+                    <div className='mt-9 mb-6'>
                         <button 
                             type='submit' 
                             className='h-12 group p-3 flex justify-center items-center rounded-2xl transition-all duration-200 ease-out outline-none bg-indigo-300 dark:bg-indigo-400 active:ring active:ring-indigo-200 focus:outline-none focus:ring focus:ring-indigo-100 w-full mb-4'
@@ -99,7 +107,7 @@ export const LoginPage = () => {
                     <div className='flex justify-center'>
                         <p className='outline-none text-md text-black opacity-60 dark:text-white dark:opacity-70 font-normal leading-4 tracking-[.01rem]'>
                             Don’t have an account? 
-                            <Link to='/auth/register' className='ml-2 text-indigo-400 opacity-100'>
+                            <Link to='/auth/register' className='ml-2 text-indigo-500 font-bold opacity-100'>
                                 Sign up
                             </Link>
                         </p>

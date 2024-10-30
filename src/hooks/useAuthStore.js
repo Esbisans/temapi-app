@@ -51,7 +51,7 @@ export const useAuthStore = () => {
             localStorage.setItem('token-init-date', new Date().getTime());
             
             const {user} = data;
-            dispatch(onLogin({name: user.name, uid: user.uid}));
+            dispatch(onLogin({name: user.name, uid: user.uid, avatar: user.avatar}));
 
         } catch (error) {
             console.log(error);
@@ -59,11 +59,11 @@ export const useAuthStore = () => {
         }
     }
 
-    const startRegister = async ({ name, email, password }) => {
+    const startRegister = async ({ name, email, password, avatar }) => {
 
         dispatch( onChecking());
 
-        const registerPromise = temapiApi.post('/api/login/new', { name, email, password });
+        const registerPromise = temapiApi.post('/api/login/new', { name, email, password, avatar });
 
         toast.promise(
             registerPromise,
@@ -86,13 +86,11 @@ export const useAuthStore = () => {
         );
 
         try {
-
-            //const {data} = await temapiApi.post('/api/login/new', { name, email, password });
             const { data } = await registerPromise;
             localStorage.setItem('token', data.token);
             localStorage.setItem('token-init-date', new Date().getTime());
             const {user} = data;
-            dispatch(onLogin({name: user.name, uid: user.uid}));
+            dispatch(onLogin({name: user.name, uid: user.uid, avatar: user.avatar}));
 
         } catch (error) {
             console.log(error);
@@ -152,7 +150,7 @@ export const useAuthStore = () => {
             localStorage.setItem('token', data.token);
             localStorage.setItem('token-init-date', new Date().getTime());
             const {user} = data;
-            dispatch(onLogin({name: user.name, uid: user.uid}));
+            dispatch(onLogin({name: user.name, uid: user.uid, avatar: user.avatar}));
         } catch (error) {
             localStorage.clear();
             dispatch(onLogout());

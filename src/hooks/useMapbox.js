@@ -10,8 +10,6 @@ mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
 export const useMapbox = (initialCoords) => {
 
-    const imageUrl = "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80";
-
     const {user} = useAuthStore();
     const {userMarker, setUserMarker, setMarkerExists, setMarkerActive} = useMapStore();
 
@@ -27,39 +25,43 @@ export const useMapbox = (initialCoords) => {
     const activeMarkersRef = useRef({});
 
 
-    const customMarker = () => {
+    const customMarker = (avatarUrl) => {
         const el = document.createElement('div');
-
+        el.style.width = '45px';  // Aumenta el tamaño del SVG
+        el.style.height = '45px';
+    
         el.innerHTML = `
-        <svg class="e-marker" fill= "#060F60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 130.7" width="36">
-            <defs>
-                <clipPath id="circle">
-                    <path d="M36,97.4c15,0,27.3-12.2,27.3-27.3c0-15-12.2-27.3-27.3-27.3S8.7,55.1,8.7,70.2S21,97.4,36,97.4z"/>
-                </clipPath>
-            </defs>
-            <path class="e-marker__marker" d="M60.7,45.4C54.1,38.8,45.3,35.2,36,35.2c-9.3,0-18.1,3.6-24.7,10.3C4.6,52,1,60.8,1,70.2c0,6.3,1.5,11.6,4.6,16.7
-            C8.4,91.3,12.1,95,16,98.9c7.3,7.2,15.5,15.4,19,30.5c0.1,0.5,0.5,0.8,1,0.8s0.9-0.3,1-0.8c3.5-15.1,11.7-23.3,19-30.5
-            c3.9-3.9,7.6-7.6,10.4-12.1c3.1-5.1,4.6-10.3,4.6-16.7C71,60.8,67.4,52,60.7,45.4z M36,97.4c-15,0-27.3-12.2-27.3-27.3
-            S21,42.9,36,42.9c15,0,27.3,12.2,27.3,27.3C63.3,85.2,51,97.4,36,97.4z"/>
-            <path class="e-marker__circle" d="M36,97.4c15,0,27.3-12.2,27.3-27.3c0-15-12.2-27.3-27.3-27.3S8.7,55.1,8.7,70.2S21,97.4,36,97.4z"/>
-            <image class="e-marker__image" width="100%" height="100%" clip-path="url(#circle)" href="${imageUrl}" />
-        </svg>
+            <svg class="e-marker" fill="#060F60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 130.7">
+                <defs>
+                    <clipPath id="circle">
+                        <path d="M36,97.4c15,0,27.3-12.2,27.3-27.3c0-15-12.2-27.3-27.3-27.3S8.7,55.1,8.7,70.2S21,97.4,36,97.4z"/>
+                    </clipPath>
+                </defs>
+                <path class="e-marker__marker" d="M60.7,45.4C54.1,38.8,45.3,35.2,36,35.2c-9.3,0-18.1,3.6-24.7,10.3C4.6,52,1,60.8,1,70.2c0,6.3,1.5,11.6,4.6,16.7
+                C8.4,91.3,12.1,95,16,98.9c7.3,7.2,15.5,15.4,19,30.5c0.1,0.5,0.5,0.8,1,0.8s0.9-0.3,1-0.8c3.5-15.1,11.7-23.3,19-30.5
+                c3.9-3.9,7.6-7.6,10.4-12.1c3.1-5.1,4.6-10.3,4.6-16.7C71,60.8,67.4,52,60.7,45.4z M36,97.4c-15,0-27.3-12.2-27.3-27.3
+                S21,42.9,36,42.9c15,0,27.3,12.2,27.3,27.3C63.3,85.2,51,97.4,36,97.4z"/>
+                <path class="e-marker__circle" d="M36,97.4c15,0,27.3-12.2,27.3-27.3c0-15-12.2-27.3-27.3-27.3S8.7,55.1,8.7,70.2S21,97.4,36,97.4z"/>
+                <image class="e-marker__image" width="100%" height="100%" clip-path="url(#circle)" href="${avatarUrl}" />
+            </svg>
         `;
         return el;
-    }
+    };
 
     const addUserMarker = useCallback((ev, id) => {
         const { lng, lat } = ev.lngLat || ev;
+        console.log(user.avatar);
+        const avatarUrl = user.avatar ? `/assets/avatars/avatar-${user.avatar}.jpg` : '/assets/avatars/avatar-0.jpg';
 
         if (!activeMarkersRef.current[user.uid]) {
             // Crear un nuevo marcador si no existe
 
-            const markerElement = customMarker();
+            const markerElement = customMarker(avatarUrl);
 
             const marker = new mapboxgl.Marker({ 
                 element: markerElement,
                 draggable: true,
-                offset: [0, -35] 
+                offset: [0, -60] 
 
             })
                 .setLngLat([lng, lat])
@@ -69,14 +71,14 @@ export const useMapbox = (initialCoords) => {
             markerRef.current = marker; 
             activeMarkersRef.current[marker.id] = marker;
 
-            setUserMarker({ lng, lat, id: user.uid, userName: user.name });
+            setUserMarker({ lng, lat, id: user.uid, userName: user.name, avatar: user.avatar });
             if (!id) {
                 setMarkerExists(true);
             }
 
             marker.on('drag', () => {
                 const { lng, lat } = marker.getLngLat();
-                setUserMarker({ lng, lat, id: user.uid, userName: user.name });
+                setUserMarker({ lng, lat, id: user.uid, userName: user.name, avatar: user.avatar });
             });
 
 
@@ -84,7 +86,7 @@ export const useMapbox = (initialCoords) => {
             // Move the marker to the new position
             activeMarkersRef.current[user.uid].setLngLat([lng, lat]);
 
-            setUserMarker({ lng, lat, id: user.uid, userName: user.name });
+            setUserMarker({ lng, lat, id: user.uid, userName: user.name, avatar: user.avatar });
         }
 
     }, []);
@@ -96,15 +98,16 @@ export const useMapbox = (initialCoords) => {
             updateMarkerLocation(activeMarker);
             return;
         }
-
+        console.log('activeMarker', activeMarker);
         const { lng, lat, userName } = activeMarker;
+        const avatarUrl = activeMarker.avatar ? `/assets/avatars/avatar-${activeMarker.avatar}.jpg` : '/assets/avatars/avatar-0.jpg';
 
-        const markerElement = customMarker();
+        const markerElement = customMarker(avatarUrl);
 
         const popup = new mapboxgl.Popup({
             closeButton: false, 
             closeOnClick: false,
-            offset: [0, -50] 
+            offset: [0, -35] 
         }).setText(userName);
 
         const marker = new mapboxgl.Marker({ 

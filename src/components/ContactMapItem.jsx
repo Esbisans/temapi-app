@@ -3,8 +3,9 @@ import { useMapStore } from '../hooks/useMapStore';
 
 export const ContactMapItem = ({user, markerAvailable}) => {
 
-    const imageUrl = "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80";
-
+    const avatarUrl = user.avatar 
+    ? `/assets/avatars/avatar-${user.avatar}.jpg` 
+    : '/assets/avatars/avatar-0.jpg'; 
 
     const {setMarkerActive} = useMapStore();
 
@@ -30,7 +31,7 @@ export const ContactMapItem = ({user, markerAvailable}) => {
                     </p>
                 </div>
 
-                <div className='w-7 h-7 md:ml-6 rounded-full bg-cover bg-center' style={{ backgroundImage: `url(${imageUrl})` }} /> 
+                <div className='w-10 h-10 md:ml-6 rounded-full bg-cover bg-center' style={{ backgroundImage: `url(${avatarUrl})` }} /> 
             </div>
 
             <div 

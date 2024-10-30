@@ -11,6 +11,7 @@ export const Sidebar = () => {
     const imageUrl = "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80";
 
     const { isProfileMenuOpen, setIsProfileMenuOpen } = useUIStore();
+    const {user} = useAuthStore();
     const buttonRef = useRef(null);
     
     const toggleMenu = () => {
@@ -19,6 +20,9 @@ export const Sidebar = () => {
 
     const { startLogout } = useAuthStore();
 
+    const avatarUrl = user.avatar 
+    ? `/assets/avatars/avatar-${user.avatar}.jpg`
+    : '/assets/avatars/avatar-0.jpg';
 
     return (
         <div className='flex flex-col items-center py-7 px-5 transition-all duration-500'>
@@ -98,8 +102,7 @@ export const Sidebar = () => {
                         'rgba(193, 202, 255, 0.5) 0px -0.125rem 0.3125rem'
                     }}
                     >
-                        <div className='w-7 h-7 rounded-full bg-cover bg-center cz-color-0 cz-color-15460325' style={{ backgroundImage: `url(${imageUrl})` }}>
-                        </div>
+                    <div className='w-8 h-8 rounded-full bg-cover bg-center cz-color-0 cz-color-15460325' style={{ backgroundImage: `url(${avatarUrl})` }}/>
                     </button>
                     
                     {/* dropdown menu */}

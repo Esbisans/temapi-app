@@ -1,3 +1,11 @@
+/*-------------------------------------------------------------------
+|  React FUNCTIONAL COMPONENT
+|
+|  Purpose: RE-USEABLE COMPONENT FOR RECIPIENT MESSAGES
+|
+|  Returns:  JSX
+*-------------------------------------------------------------------*/
+
 import React from 'react'
 import { dateConvert } from '../helpers/dateConvert'
 

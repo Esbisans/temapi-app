@@ -46,7 +46,7 @@ export const DropdownProfile = ({buttonRef}) => {
     ref={menuRef}
     >
         <div
-            className='md:bottom-0 md:left-[2.5rem] md:top-[auto] bottom-[3.125rem] left-[-4.8125rem] absolute z-[100] w-[12.5rem] mt-2 rounded-sm bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-600 focus:outline-none cz-color-0 cz-color-16777215 cz-color-16184563'
+            className='md:bottom-0 md:left-[2.5rem] md:top-[auto] bottom-[3.125rem] left-[-4.8125rem] absolute z-[100] w-[12.5rem] mt-2 rounded-sm bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-600 focus:outline-none'
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"

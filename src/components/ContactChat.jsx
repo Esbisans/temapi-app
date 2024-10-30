@@ -7,8 +7,6 @@ import { SenderMessage } from './SenderMessage';
 
 export const ContactChat = () => {
 
-  const imageUrl = "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80";
-
   const { socket } = useContext(SocketContext);
   const { user } = useAuthStore();
   const { chatActive, messages, users } = useChatStore();
@@ -51,6 +49,10 @@ export const ContactChat = () => {
 
   } , [users, chatActive])
 
+  const avatarUrl = userChatActive?.avatar 
+  ? `/assets/avatars/avatar-${userChatActive.avatar}.jpg`
+  : '/assets/avatars/avatar-0.jpg'; 
+
   return (
     <div className='xs:absolute xs:z-10 md:static grow h-[100vh] xs:w-full md:w-fit scrollbar-hidden bg-white dark:bg-gray-800 transition-all duration-500 xs:left-[0rem] xs:static flex flex-col justify-between'>
   
@@ -60,7 +62,7 @@ export const ContactChat = () => {
           <div className='w-full flex justify-center items-center'>
             <div className='flex grow'>
               <div className='mr-5 outline-none'>
-                <div className='w-[2.25rem] h-[2.25rem] rounded-full bg-cover bg-center' style={{ backgroundImage: `url(${imageUrl})` }}>
+                <div className='w-[2.25rem] h-[2.25rem] rounded-full bg-cover bg-center' style={{ backgroundImage: `url(${avatarUrl})` }}>
                 </div>
               </div>
               <div className='flex flex-col'>
@@ -113,7 +115,7 @@ export const ContactChat = () => {
           </div>
 
           <div className='min-h-[2.75rem] flex'>
-            <button className='mt-1 group flex justify-center items-center outline-none rounded-full focus:outline-none transition-all duration-200 group w-7 h-7 bg-indigo-300 hover:bg-indigo-400 focus:bg-indigo-400 dark:focus:bg-indigo-300 dark:bg-indigo-400 dark:hover:bg-indigo-400 active:scale-110'>
+            <button className='mt-1 group flex justify-center items-center outline-none rounded-full focus:outline-none transition-all duration-200 group w-8 h-8 bg-indigo-300 hover:bg-indigo-400 focus:bg-indigo-400 dark:focus:bg-indigo-300 dark:bg-indigo-400 dark:hover:bg-indigo-400 active:scale-110'>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" className="w-[1.0625rem] h-[1.0625rem] text-white">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"></path>
               </svg>
