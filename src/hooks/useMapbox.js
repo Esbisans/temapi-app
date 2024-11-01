@@ -50,7 +50,6 @@ export const useMapbox = (initialCoords) => {
 
     const addUserMarker = useCallback((ev, id) => {
         const { lng, lat } = ev.lngLat || ev;
-        console.log(user.avatar);
         const avatarUrl = user.avatar ? `/assets/avatars/avatar-${user.avatar}.jpg` : '/assets/avatars/avatar-0.jpg';
 
         if (!activeMarkersRef.current[user.uid]) {
@@ -98,7 +97,6 @@ export const useMapbox = (initialCoords) => {
             updateMarkerLocation(activeMarker);
             return;
         }
-        console.log('activeMarker', activeMarker);
         const { lng, lat, userName } = activeMarker;
         const avatarUrl = activeMarker.avatar ? `/assets/avatars/avatar-${activeMarker.avatar}.jpg` : '/assets/avatars/avatar-0.jpg';
 

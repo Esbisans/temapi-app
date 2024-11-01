@@ -26,7 +26,7 @@ export const ContactMapItem = ({user, markerAvailable}) => {
             >    
             <div className='flex flex-col'>
                 <div className='mb-2 md:ml-4 text-start'>
-                    <p className='outline-none text-sm text-black opacity-60 dark:text-white dark:opacity-70 font-semibold leading-4 tracking-[.01rem]'>
+                    <p className='outline-none text-sm text-black opacity-60 font-semibold leading-4 tracking-[.01rem]'>
                         {user.name}
                     </p>
                 </div>

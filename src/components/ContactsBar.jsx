@@ -20,7 +20,7 @@ export const ContactsBar = () => {
         >
         <div className="h-full flex flex-col">
             <div className='w-full min-h-[5rem] max-h-fit px-5 py-6 flex justify-between items-center'>
-                <p className='text-black opacity-60 dark:text-white text-xl leading-4 tracking-[.01rem] outline-none'>
+                <p className='text-black opacity-60 text-xl leading-4 tracking-[.01rem] outline-none'>
                     Contacts
                 </p>
             </div>

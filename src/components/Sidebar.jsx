@@ -8,7 +8,6 @@ import { SideBarItem } from './SideBarItem';
 
 export const Sidebar = () => {
 
-    const imageUrl = "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80";
 
     const { isProfileMenuOpen, setIsProfileMenuOpen } = useUIStore();
     const {user} = useAuthStore();
@@ -27,8 +26,8 @@ export const Sidebar = () => {
     return (
         <div className='flex flex-col items-center py-7 px-5 transition-all duration-500'>
             {/* logo */}
-            <div className='mb-10 h-7 xs:hidden md:block cz-color-0 cz-color-15460325'>
-                <button className='outline-none cz-color-0 cz-color-15460325'>
+            <div className='mb-10 h-7 xs:hidden md:block'>
+                <button className='outline-none'>
                     <img 
                         src={icon} 
                         alt="icon" 
@@ -38,14 +37,14 @@ export const Sidebar = () => {
             </div>
 
             {/* main section */}
-            <div className='grow cz-color-0 cz-color-15460325'>
-                <nav className='cz-color-0 cz-color-15460325'>
-                    <ul className='xs:flex md:block xs:justify-between xs:items-center cz-color-0 cz-color-15460325'>
+            <div className='grow'>
+                <nav>
+                    <ul className='xs:flex md:block xs:justify-between xs:items-center'>
 
                         <SideBarItem 
                             icon={
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path fillRule='evenodd' d="M5.337 21.718a6.707 6.707 0 01-.533-.074.75.75 0 01-.44-1.223 3.73 3.73 0 00.814-1.686c.023-.115-.022-.317-.254-.543C3.274 16.587 2.25 14.41 2.25 12c0-5.03 4.428-9 9.75-9s9.75 3.97 9.75 9c0 5.03-4.428 9-9.75 9-.833 0-1.643-.097-2.417-.279a6.721 6.721 0 01-4.246.997z" clipRule="evenodd" className="cz-color-16288897 cz-color-15460325"></path>
+                                    <path fillRule='evenodd' d="M5.337 21.718a6.707 6.707 0 01-.533-.074.75.75 0 01-.44-1.223 3.73 3.73 0 00.814-1.686c.023-.115-.022-.317-.254-.543C3.274 16.587 2.25 14.41 2.25 12c0-5.03 4.428-9 9.75-9s9.75 3.97 9.75 9c0 5.03-4.428 9-9.75 9-.833 0-1.643-.097-2.417-.279a6.721 6.721 0 01-4.246.997z" clipRule="evenodd"></path>
                                 </svg>
                                 
                             }
@@ -66,9 +65,9 @@ export const Sidebar = () => {
             </div>
 
             {/* lower section  */}
-            <div className='mt-auto cz-color-0 cz-color-15460325'>
-                <nav className='xs:hidden md:block cz-color-0 cz-color-15460325'>
-                    <ul className='cz-color-0 cz-color-15460325'>
+            <div className='mt-auto'>
+                <nav className='xs:hidden md:block'>
+                    <ul>
 
                         <SideBarItem 
                             icon={ 
@@ -84,11 +83,11 @@ export const Sidebar = () => {
                 </nav>
 
                 {/* button profile */}
-                <div className='relative xs:hidden md:block cz-color-0 cz-color-15460325'>
+                <div className='relative xs:hidden md:block'>
                     <button 
                     onClick={toggleMenu}
                     ref={buttonRef}
-                    className='bg-white rounded-full active:scale-110 focus:outline-none focus:scale-110 transition duration-200 ease-out cz-color-0 cz-color-16777215 cz-color-15460325'
+                    className='bg-white rounded-full active:scale-110 focus:outline-none focus:scale-110 transition duration-200 ease-out'
                     id='profile-menu-button'
                     data-dropdown-toggle="profile-menu-dropdown"
                     aria-expanded='false'
@@ -102,7 +101,7 @@ export const Sidebar = () => {
                         'rgba(193, 202, 255, 0.5) 0px -0.125rem 0.3125rem'
                     }}
                     >
-                    <div className='w-8 h-8 rounded-full bg-cover bg-center cz-color-0 cz-color-15460325' style={{ backgroundImage: `url(${avatarUrl})` }}/>
+                    <div className='w-8 h-8 rounded-full bg-cover bg-center' style={{ backgroundImage: `url(${avatarUrl})` }}/>
                     </button>
                     
                     {/* dropdown menu */}

@@ -54,7 +54,7 @@ export const ContactChat = () => {
   : '/assets/avatars/avatar-0.jpg'; 
 
   return (
-    <div className='xs:absolute xs:z-10 md:static grow h-[100vh] xs:w-full md:w-fit scrollbar-hidden bg-white dark:bg-gray-800 transition-all duration-500 xs:left-[0rem] xs:static flex flex-col justify-between'>
+    <div className='xs:absolute xs:z-10 md:static grow h-[100vh] xs:w-full md:w-fit scrollbar-hidden bg-white transition-all duration-500 xs:left-[0rem] xs:static flex flex-col justify-between'>
   
       {/* Contact Information */}
       <div className='w-full'>
@@ -66,10 +66,10 @@ export const ContactChat = () => {
                 </div>
               </div>
               <div className='flex flex-col'>
-                <p className='outline-none text-sm text-black opacity-60 dark:text-white dark:opacity-70 font-semibold leading-4 tracking-[.01rem] mb-2 default-outline cursor-pointer'>
+                <p className='outline-none text-sm text-black opacity-60 font-semibold leading-4 tracking-[.01rem] mb-2 default-outline cursor-pointer'>
                   {userChatActive?.name}
                 </p>
-                <p className={`outline-none text-sm text-black opacity-60 dark:text-white dark:opacity-70 leading-4 tracking-[.01rem] font-extralight default-outline rounded-[.25rem] ${userChatActive?.online ? 'text-green-700' : 'text-red-700'}`}>
+                <p className={`outline-none text-sm text-black opacity-60 leading-4 tracking-[.01rem] font-extralight default-outline rounded-[.25rem] ${userChatActive?.online ? 'text-green-700' : 'text-red-700'}`}>
                   {userChatActive?.online ? 'Online' : 'Offline'}
                 </p>
               </div>
@@ -102,7 +102,7 @@ export const ContactChat = () => {
           <div className='grow md:mr-5 xs:mr-4 self-end'>
             <div className='relative'>
               <input 
-                className='max-w-full w-full px-5 py-4 rounded-3xl content-center outline-none text-sm placeholder:text-black placeholder:opacity-40 text-opacity-70 dark:placeholder:text-white dark:placeholder:opacity-70 focus:outline-none transition duration-200 ease-out text-black bg-gray-50 dark:text-white border-opacity-0 dark:bg-gray-700 dark:bg-opacity-70 dark:border-opacity-70 dark:border-gray-700 max-h-[5rem] pr-[3.125rem] resize-none scrollbar-hidden'
+                className='max-w-full w-full px-5 py-4 rounded-3xl content-center outline-none text-sm placeholder:text-black placeholder:opacity-40 text-opacity-70 focus:outline-none transition duration-200 ease-out text-black bg-gray-50 border-opacity-0 max-h-[5rem] pr-[3.125rem] resize-none scrollbar-hidden'
                 cols="30"
                 rows="1"
                 placeholder="Write your message here"
@@ -115,7 +115,7 @@ export const ContactChat = () => {
           </div>
 
           <div className='min-h-[2.75rem] flex'>
-            <button className='mt-1 group flex justify-center items-center outline-none rounded-full focus:outline-none transition-all duration-200 group w-8 h-8 bg-indigo-300 hover:bg-indigo-400 focus:bg-indigo-400 dark:focus:bg-indigo-300 dark:bg-indigo-400 dark:hover:bg-indigo-400 active:scale-110'>
+            <button className='mt-1 group flex justify-center items-center outline-none rounded-full focus:outline-none transition-all duration-200 group w-8 h-8 bg-indigo-300 hover:bg-indigo-400 focus:bg-indigo-400 active:scale-110'>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" className="w-[1.0625rem] h-[1.0625rem] text-white">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"></path>
               </svg>

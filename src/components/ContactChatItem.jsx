@@ -29,7 +29,6 @@ export const ContactChatItem = ({user, lastMessage, unseenMessagesCount}) => {
 
         // if the chatActive is the same as the last message sender
         if (chatActive === lastMessage?.uid) {
-            console.log('chatActive', chatActive);
             socket?.emit('mark:messages:seen', user.uid)
         }
 
@@ -45,7 +44,7 @@ export const ContactChatItem = ({user, lastMessage, unseenMessagesCount}) => {
                 {
                     (user.online) 
                     &&
-                    <span className="absolute top-0 right-[-4px] w-3 h-3 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span> 
+                    <span className="absolute top-0 right-[-4px] w-3 h-3 bg-green-400 border-2 border-white rounded-full"></span> 
                 }
             </div>
             <div className='w-full flex flex-col'>
@@ -53,14 +52,14 @@ export const ContactChatItem = ({user, lastMessage, unseenMessagesCount}) => {
                     <div className='flex items-start'>
                         {/* name */}
                         <div className='grow mb-4 text-start'>
-                            <p className='outline-none text-sm text-black opacity-60 dark:text-white dark:opacity-70 font-semibold leading-4 tracking-[.01rem]'>
+                            <p className='outline-none text-sm text-black opacity-60 font-semibold leading-4 tracking-[.01rem]'>
                                 {user.name}
                             </p>
                         </div>
                         {/* time */}
                         {
                             lastMessage?.createdAt &&
-                            <p className='outline-none text-xs text-black opacity-60 dark:text-white dark:opacity-70 font-light leading-4 tracking-[.01rem]'>
+                            <p className='outline-none text-xs text-black opacity-60 font-light leading-4 tracking-[.01rem]'>
                                 {dateConvert(lastMessage?.createdAt)}
                             </p>
                         }
@@ -69,7 +68,7 @@ export const ContactChatItem = ({user, lastMessage, unseenMessagesCount}) => {
 
                     <div className='flex justify-between'>
                         {/* last message */}
-                        <p className={`overflow-hidden outline-none ${unseenMessagesCount ? 'text-indigo-700 font-semibold' : 'text-black' } text-sm opacity-60 dark:text-white dark:opacity-70 font-normal leading-4 tracking-[.01rem] flex justify-start items-center flex-grow w-0`}>
+                        <p className={`overflow-hidden outline-none ${unseenMessagesCount ? 'text-indigo-700 font-semibold' : 'text-black' } text-sm opacity-60 font-normal leading-4 tracking-[.01rem] flex justify-start items-center flex-grow w-0`}>
                             <span className='truncate'>
                                 {lastMessage?.message}
                             </span>

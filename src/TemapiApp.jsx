@@ -16,8 +16,8 @@ export const TemapiApp = () => {
 
   return (
     <div>
-      <div className="dark:bg-gray-800 transition-all duration-500">
-        <div className='static h-full flex flex-row overflow-hidden'>
+      <div className="transition-all duration-500">
+        <div className='xs:relative md:static h-full flex xs:flex-col md:flex-row overflow-hidden'>
 
           {/* side bar */}
           <Sidebar />

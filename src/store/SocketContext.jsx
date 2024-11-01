@@ -33,7 +33,6 @@ export const SocketProvider = ({ children }) => {
     //Escuchar los cambios en el estado de autenticación
     useEffect(() => {
         socket?.on('user:list', (users) => {
-            console.log(users);
             loadUsers(users)
         })
     }, [socket])
@@ -47,14 +46,12 @@ export const SocketProvider = ({ children }) => {
     
     useEffect(() => {
         socket?.on('last:messages', (lastMessages) => {
-            console.log(lastMessages);
             loadLastMessages(lastMessages)
         })
     }, [socket])
 
     useEffect(() => {
         socket?.on('unseen:messages', (unseenMessages) => {
-            console.log(unseenMessages);
             loadUnseenMessages(unseenMessages)
         })
     }, [socket])

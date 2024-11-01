@@ -46,7 +46,6 @@ export const Map = () => {
   // Listen for active markers 
   useEffect(() => {
     socket.on('active:markers' , (markers) => {
-      console.log('active markers received', markers);
       setActiveMarkers(markers);
       for (const key of Object.keys(markers)) {
         if (key === user.uid) {
