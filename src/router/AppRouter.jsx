@@ -17,7 +17,13 @@ export const AppRouter = () => {
 
     if (status === 'checking') {
         return (
-            <LoadingPage />
+            <>
+                <Toaster
+                    position="top-left"
+                    reverseOrder={true}
+                />
+                <LoadingPage />
+            </>
         )
     }
 
