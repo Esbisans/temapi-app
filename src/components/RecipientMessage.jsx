@@ -1,5 +1,5 @@
 /*-------------------------------------------------------------------
-|  React FUNCTIONAL COMPONENT
+|  REACT FUNCTIONAL COMPONENT
 |
 |  Purpose: RE-USEABLE COMPONENT FOR RECIPIENT MESSAGES
 |

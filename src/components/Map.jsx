@@ -1,3 +1,11 @@
+/*-------------------------------------------------------------------
+|  REACT FUNCTIONAL COMPONENT
+|
+|  Purpose: MAP COMPONENT FOR DISPLAYING MAPBOX MAP AND MARKERS
+|
+|  Returns:  JSX
+*-------------------------------------------------------------------*/
+
 import React, { useContext, useEffect, useRef } from 'react'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css';

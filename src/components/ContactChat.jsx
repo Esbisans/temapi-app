@@ -1,3 +1,11 @@
+/*-------------------------------------------------------------------
+|  REACT FUNCTIONAL COMPONENT
+|
+|  Purpose: CONTACT CHAT COMPONENT FOR DISPLAYING CHAT MESSAGES
+|
+|  Returns:  JSX
+*-------------------------------------------------------------------*/
+
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useAuthStore } from '../hooks/useAuthStore';
 import { useChatStore } from '../hooks/useChatStore';

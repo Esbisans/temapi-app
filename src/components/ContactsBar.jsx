@@ -1,3 +1,11 @@
+/*-------------------------------------------------------------------
+|  React FUNCTIONAL COMPONENT
+|
+|  Purpose: CONTACTS BAR COMPONENT FOR DISPLAYING CONTACTS
+|
+|  Returns:  JSX
+*-------------------------------------------------------------------*/
+
 import { useChatStore } from '../hooks/useChatStore';
 import { useAuthStore } from '../hooks/useAuthStore';
 import { ContactChatItem } from './ContactChatItem';

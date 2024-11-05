@@ -1,3 +1,11 @@
+/*-------------------------------------------------------------------
+|  REACT FUNCTIONAL COMPONENT
+|
+|  Purpose: RE-USEABLE COMPONENT FOR CONTACT MAP ITEMS
+|
+|  Returns:  JSX
+*-------------------------------------------------------------------*/
+
 import React from 'react'
 import { useMapStore } from '../hooks/useMapStore';
 

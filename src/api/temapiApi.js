@@ -1,3 +1,11 @@
+/*-------------------------------------------------------------------
+|  API CLIENT FOR TEMAPI
+|
+|  Purpose: CONFIGURE AXIOS API CLIENT
+|
+|  Returns:  API CLIENT INSTANCE
+*-------------------------------------------------------------------*/
+
 import axios from 'axios';
 import { getEnv } from '../helpers/getEnv';
 

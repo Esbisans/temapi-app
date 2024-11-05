@@ -159,6 +159,9 @@ export const useAuthStore = () => {
     }
 
     const startLogout = () => {
+        toast.success('Successfully logged out', {
+            duration: 5000, 
+        });
         localStorage.clear();
         dispatch(onLogout());
         logoutClearChat();

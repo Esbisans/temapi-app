@@ -1,3 +1,11 @@
+/*-------------------------------------------------------------------
+|  REACT FUNCTIONAL COMPONENT
+|
+|  Purpose: RE-USEABLE COMPONENT FOR SIDEBAR ITEMS NAVIGATION BUTTONS
+|
+|  Returns:  JSX
+*-------------------------------------------------------------------*/
+
 import React from 'react'
 import { useUIStore } from '../hooks/useUIStore';
 

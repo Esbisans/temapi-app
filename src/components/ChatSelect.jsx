@@ -1,3 +1,11 @@
+/*-------------------------------------------------------------------
+|  React FUNCTIONAL COMPONENT
+|
+|  Purpose: NO CHAT SELECTED COMPONENT
+|
+|  Returns:  JSX
+*-------------------------------------------------------------------*/
+
 import React from 'react'
 
 export const ChatSelect = () => {

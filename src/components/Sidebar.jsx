@@ -1,3 +1,11 @@
+/*-------------------------------------------------------------------
+|  REACT FUNCTIONAL COMPONENT FOR SIDEBAR
+|
+|  Purpose: SIDEBAR COMPONENT FOR NAVIGATION AND PROFILE INTERACTION
+|
+|  Returns:  JSX
+*-------------------------------------------------------------------*/
+
 import React, { useRef } from 'react'
 import icon from '../assets/icon.png'
 import { DropdownProfile } from './DropdownProfile';

@@ -1,3 +1,11 @@
+/*-------------------------------------------------------------------
+|  REACT FUNCTIONAL COMPONENT
+|
+|  Purpose: DROPDOWN PROFILE MENU COMPONENT
+|
+|  Returns:  JSX
+*-------------------------------------------------------------------*/
+
 import React, { useContext, useEffect, useRef } from 'react'
 import { useUIStore } from '../hooks/useUIStore';
 import { useAuthStore } from '../hooks/useAuthStore';

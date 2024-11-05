@@ -1,3 +1,11 @@
+/*-------------------------------------------------------------------
+|  REACT FUNCTIONAL COMPONENT
+|
+|  Purpose: RE-USEABLE COMPONENT FOR CONTACT CHAT ITEMS
+|
+|  Returns:  JSX
+*-------------------------------------------------------------------*/
+
 import { useContext, useEffect } from 'react';
 import { useChatStore } from '../hooks/useChatStore';
 import { SocketContext } from '../store/SocketContext';
