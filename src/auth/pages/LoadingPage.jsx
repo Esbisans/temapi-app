@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Toaster } from 'react-hot-toast';
 
 export const LoadingPage = () => {
 
@@ -14,7 +13,6 @@ export const LoadingPage = () => {
     }, [])
 
   return (
-    <>
     <div className="flex flex-col justify-center items-center h-screen">
         <div role="status">
             <svg aria-hidden="true" className="inline w-24 h-24 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,6 +25,5 @@ export const LoadingPage = () => {
             <p className="mt-10 text-gray-700 dark:text-gray-400">Please wait, the server is waking up...</p>
         )}
     </div>
-    </>
   )
 }
