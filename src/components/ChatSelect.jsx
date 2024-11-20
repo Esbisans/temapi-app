@@ -11,7 +11,11 @@ import React from 'react'
 export const ChatSelect = () => {
 
   return (
-    <div className='xs:absolute xs:z-10 md:static grow h-[100vh] xs:w-full md:w-fit scrollbar-hidden bg-whit transition-all duration-500 xs:left-[0rem] xs:static flex flex-col justify-between'>
+    <div className='
+                    xs:z-10 xs:h-[calc(100vh-4rem)] xs:w-full xs:left-[0rem] xs:static xs:hidden
+                    md:static md:w-fit md:flex
+                    grow scrollbar-hidden bg-white transition-all duration-500 flex-col justify-between
+                    '>
         <div className='h-full flex flex-col justify-center items-center'>
             <div className='w-10 h-10 mr-4 mb-5 flex justify-center items-center rounded-full bg-gray-50 transition duration-500'>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-7 h-7 text-gray-400">

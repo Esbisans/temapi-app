@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { addMessage, messagesLoaded, setActiveChat, usersLoaded, lastMessagesLoaded, unseenMessagesLoaded, chatLogout } from "../store/chat/chatSlice";
+import { addMessage, messagesLoaded, setActiveChat, usersLoaded, lastMessagesLoaded, unseenMessagesLoaded, chatLogout, chatActiveClear } from "../store/chat/chatSlice";
 import temapiApi from "../api/temapiApi";
 
 
@@ -40,6 +40,10 @@ export const useChatStore = () => {
         dispatch( setActiveChat(uid) );
     }
 
+    const clearActiveChat = () => {
+        dispatch( chatActiveClear() );
+    }
+
     const logoutClearChat = () => {
         dispatch( chatLogout() );
     }
@@ -57,6 +61,7 @@ export const useChatStore = () => {
         loadUnseenMessages,
         newMessage,
         activateChat,
+        clearActiveChat,
         logoutClearChat
     }
 

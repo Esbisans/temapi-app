@@ -32,9 +32,13 @@ export const Sidebar = () => {
     : '/assets/avatars/avatar-0.jpg';
 
     return (
-        <div className='flex flex-col items-center py-7 px-5 transition-all duration-500'>
+        <div className='
+            xs:order-1 xs:flex-row xs:h-16
+            md:-order-none md:flex-col md:h-screen
+            flex items-center md:py-7 xs:py-3 px-5 transition-all duration-500
+            '>
             {/* logo */}
-            <div className='mb-10 h-7 xs:hidden md:block'>
+            <div className='md:mb-10 h-7 xs:mb-2 md:block'>
                 <button className='outline-none'>
                     <img 
                         src={icon} 
@@ -47,8 +51,9 @@ export const Sidebar = () => {
             {/* main section */}
             <div className='grow'>
                 <nav>
-                    <ul className='xs:flex md:block xs:justify-between xs:items-center'>
+                    <ul className='xs:flex md:block xs:justify-evenly xs:items-center'>
 
+                        
                         <SideBarItem 
                             icon={
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -68,14 +73,15 @@ export const Sidebar = () => {
                             }
                             name='map'
                         />
+                        
                     </ul>
                 </nav>
             </div>
 
             {/* lower section  */}
-            <div className='mt-auto'>
-                <nav className='xs:hidden md:block'>
-                    <ul>
+            <div className='mt-auto xs:grow md:grow-0'>
+                <nav>
+                    <ul className='xs:flex md:block xs:justify-between xs:items-center'>
 
                         <SideBarItem 
                             icon={ 
@@ -87,36 +93,36 @@ export const Sidebar = () => {
                             onClick={startLogout}
                         />
                             
+                        {/* button profile */}
+                        <div className='relative block xs:order-first'>
+                            <button 
+                            onClick={toggleMenu}
+                            ref={buttonRef}
+                            className='bg-white rounded-full active:scale-110 focus:outline-none focus:scale-110 transition duration-200 ease-out'
+                            id='profile-menu-button'
+                            data-dropdown-toggle="profile-menu-dropdown"
+                            aria-expanded='false'
+                            aria-controls='profile-menu'
+                            aria-label='toggle profile menu'  
+                            style={{
+                                boxShadow: 
+                                'rgba(193, 202, 255, 0.5) 0px 0.125rem 0.3125rem, ' + 
+                                'rgba(193, 202, 255, 0.5) 0.125rem 0px 0.3125rem, ' + 
+                                'rgba(193, 202, 255, 0.5) -0.125rem 0px 0.3125rem, ' + 
+                                'rgba(193, 202, 255, 0.5) 0px -0.125rem 0.3125rem'
+                            }}
+                            >
+                            <div className='w-8 h-8 rounded-full bg-cover bg-center' style={{ backgroundImage: `url(${avatarUrl})` }}/>
+                            </button>
+                            
+                            {/* dropdown menu */}
+                            {isProfileMenuOpen && (
+                                <DropdownProfile buttonRef={buttonRef} />
+                            )}
+                        </div>
                     </ul>
                 </nav>
 
-                {/* button profile */}
-                <div className='relative xs:hidden md:block'>
-                    <button 
-                    onClick={toggleMenu}
-                    ref={buttonRef}
-                    className='bg-white rounded-full active:scale-110 focus:outline-none focus:scale-110 transition duration-200 ease-out'
-                    id='profile-menu-button'
-                    data-dropdown-toggle="profile-menu-dropdown"
-                    aria-expanded='false'
-                    aria-controls='profile-menu'
-                    aria-label='toggle profile menu'  
-                    style={{
-                        boxShadow: 
-                        'rgba(193, 202, 255, 0.5) 0px 0.125rem 0.3125rem, ' + 
-                        'rgba(193, 202, 255, 0.5) 0.125rem 0px 0.3125rem, ' + 
-                        'rgba(193, 202, 255, 0.5) -0.125rem 0px 0.3125rem, ' + 
-                        'rgba(193, 202, 255, 0.5) 0px -0.125rem 0.3125rem'
-                    }}
-                    >
-                    <div className='w-8 h-8 rounded-full bg-cover bg-center' style={{ backgroundImage: `url(${avatarUrl})` }}/>
-                    </button>
-                    
-                    {/* dropdown menu */}
-                    {isProfileMenuOpen && (
-                        <DropdownProfile buttonRef={buttonRef} />
-                    )}
-                </div>
             </div>
         </div>
     )

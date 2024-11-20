@@ -17,7 +17,7 @@ export const ContactChat = () => {
 
   const { socket } = useContext(SocketContext);
   const { user } = useAuthStore();
-  const { chatActive, messages, users } = useChatStore();
+  const { chatActive, messages, users, clearActiveChat } = useChatStore();
   const [userChatActive, setUserChatActive] = useState(null);
 
   const [message, setMessage] = useState('');
@@ -46,6 +46,10 @@ export const ContactChat = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: behavior });
   };
 
+  const onClickBackContacts = () => {
+    clearActiveChat();
+  }
+
   useEffect(() => {
     scrollToBottom('auto'); 
   }, [messages]);
@@ -62,12 +66,21 @@ export const ContactChat = () => {
   : '/assets/avatars/avatar-0.jpg'; 
 
   return (
-    <div className='xs:absolute xs:z-10 md:static grow h-[100vh] xs:w-full md:w-fit scrollbar-hidden bg-white transition-all duration-500 xs:left-[0rem] xs:static flex flex-col justify-between'>
+    <div className='xs:z-10 md:static grow xs:h-[calc(100vh-4rem)] md:h-screen xs:w-full md:w-fit scrollbar-hidden bg-white transition-all duration-500 xs:left-[0rem] xs:static flex flex-col justify-between'>
   
       {/* Contact Information */}
       <div className='w-full'>
         <div className='w-full min-h-[5.25rem] px-5 py-6'>
           <div className='w-full flex justify-center items-center'>
+            <div className='group mr-4 md:hidden'>
+              <button 
+                  className='group flex justify-center items-center rounded-full outline-none focus:outline-none hover:bg-gray-50 focus:bg-gray-50 transition-all duration-200 w-7 h-7'
+                  onClick={onClickBackContacts}
+                >
+                
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="w-[1.25rem] h-[1.25rem] text-gray-300 group-hover:text-indigo-300"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"></path></svg>
+              </button>
+            </div>
             <div className='flex grow'>
               <div className='mr-5 outline-none'>
                 <div className='w-[2.25rem] h-[2.25rem] rounded-full bg-cover bg-center' style={{ backgroundImage: `url(${avatarUrl})` }}>

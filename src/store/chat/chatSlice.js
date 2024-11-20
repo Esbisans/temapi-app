@@ -37,10 +37,13 @@ export const chatSlice = createSlice({
         unseenMessagesLoaded: (state, action) => {
           state.unseenMessages = action.payload;
         },
+        chatActiveClear: (state) => {
+          state.chatActive = null;
+        },
 
         chatLogout: () => initialState,
     },
     
 });
 
-export const { usersLoaded, setActiveChat, addMessage, messagesLoaded, lastMessagesLoaded, unseenMessagesLoaded, chatLogout } = chatSlice.actions;
+export const { usersLoaded, setActiveChat, addMessage, messagesLoaded, lastMessagesLoaded, unseenMessagesLoaded,chatActiveClear, chatLogout } = chatSlice.actions;

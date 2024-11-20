@@ -44,7 +44,7 @@ export const ContactChatItem = ({user, lastMessage, unseenMessagesCount}) => {
 
   return (
     <div className='select-none' onClick={onClickActivateChat}>
-        <button className={`w-full h-[5.75rem] px-5 py-6 mb-3 flex rounded-xl focus:bg-indigo-50 hover:bg-indigo-50 ${user.uid === chatActive && 'bg-indigo-50'} active:bg-indigo-100 focus:outline-none transition duration-500 ease-out`}>
+        <button className={`w-full h-[5.75rem] px-5 py-6 mb-3 flex rounded-xl focus:bg-indigo-50 hover:bg-indigo-50 ${user.uid === chatActive && 'bg-indigo-50'} active:bg-indigo-100 focus:outline-none transition duration-500 ease-out xs:overflow-hidden`}>
             {/* avatar */}
             <div className='relative mr-4'>
                 <div className='w-9 h-9 rounded-full bg-cover bg-center' style={{ backgroundImage: `url(${avatarUrl})` }}> 

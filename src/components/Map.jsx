@@ -98,8 +98,11 @@ export const Map = () => {
   } , [markerActive])
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
-      <div ref={setRef} style={{ width: '100%', height: '100vh'}} className='map-container ml-5'/>
+    <div className="relative w-full h-full">
+      <div
+        ref={setRef}
+        className="map-container w-full h-full"
+      />
       <button
         onClick={flyToUserMarker}
         className=' absolute bg-white hover:bg-indigo-50 active:bg-indigo-100 focus:outline-none'
